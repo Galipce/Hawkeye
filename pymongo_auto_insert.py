@@ -12,7 +12,7 @@ while True:
  print("1.Insert")
  print("2.Delete")
  print("3.Delete")
-
+ print("====================================")
  option = input("Your choice (1/2/3):")
 
  if option == '1':
