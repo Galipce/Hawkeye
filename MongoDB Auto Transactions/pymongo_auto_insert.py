@@ -1,7 +1,7 @@
 import pymongo
 from pymongo import mongo_client
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+myclient = pymongo.MongoClient("mongodb+srv://admin:123321@cluster0.5tm4q.mongodb.net/?retryWrites=true&w=majority")
 mydb = myclient["Hawkeye"]
 user_table = mydb["users"]
 
