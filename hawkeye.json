@@ -1,0 +1,13 @@
+{
+    "MyClient": {
+                
+                "ConnectionString": "mongodb://localhost:127012",
+                "dbName": "HawkeyeDB",
+                "myCollections": ["Collection1", "Collection2"]
+
+            }
+}
+
+
+
+
