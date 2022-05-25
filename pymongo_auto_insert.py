@@ -6,7 +6,7 @@ mydb = myclient["Hawkeye"]
 user_table = mydb["users"]
 
 while True:
-
+ print("====================================")
  print("Select Action To Do.")
  print("====================================")
  print("1.Insert")
