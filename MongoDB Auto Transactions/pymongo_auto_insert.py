@@ -11,7 +11,7 @@ while True:
  print("====================================")
  print("1.Insert")
  print("2.Delete")
- print("3.Delete")
+ print("3.Update")
  print("====================================")
  option = input("Your choice (1/2/3):")
 
