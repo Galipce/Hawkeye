@@ -1,5 +1,3 @@
-from ast import Delete
-from tkinter import INSERT
 import pymongo
 from pymongo import mongo_client
 
@@ -19,7 +17,7 @@ while True:
  if secim == '1':
    Insert = input("Kaç adet veri girilmesini istersiniz? ")  
    for i in range(int(Insert)):
-    mydict = { "email": "test_try@aaraskargo.com", "name": "Test_User", "password": "r=X2KM6+~w;Z)x{K", "rememberMe": "remember-me", "rol": "Customer" }
+    mydict = { "email": "test_try@araskargo.com", "name": "Test_User", "password": "r=X2KM6+~w;Z)x{K", "rememberMe": "remember-me", "role": "Customer" }
     x = user_table.insert_one(mydict)
     print(x)
 
@@ -27,7 +25,6 @@ while True:
  elif secim == '2':
    Delete = input("Kaç adet veri girilmesini istersiniz? ")  
    for i in range(int(Delete)):
-    mydict = { "email": "test_try@aaraskargo.com", "name": "Test_User", "password": "r=X2KM6+~w;Z)x{K", "rememberMe": "remember-me", "rol": "Customer" }
+    mydict = { "email": "test_try@araskargo.com", "name": "Test_User", "password": "r=X2KM6+~w;Z)x{K", "rememberMe": "remember-me", "role": "Customer" }
     x = user_table.delete_one(mydict)
     print(x)
-
