@@ -1,0 +1,5 @@
+{
+    "ConnectingURL": "mongodb+srv://HawkeyeAdmin:g4OfpwRqvLlEMgLc@cluster0.5tm4q.mongodb.net/?retryWrites=true&w=majority",
+    "DBName": "Hawkeye",
+    "CollectionName": "users"
+}
