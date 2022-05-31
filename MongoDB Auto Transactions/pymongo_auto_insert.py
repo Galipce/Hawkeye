@@ -5,8 +5,6 @@ import json
 with open("Hawkeye.json") as Hawkeye:
   verilerimiz=json.load(Hawkeye)
 
-print(verilerimiz["ConnectingURL"])
-
 myclient = pymongo.MongoClient(verilerimiz["ConnectingURL"])
 
 mydb = myclient [verilerimiz["DBName"]]
