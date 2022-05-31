@@ -2,13 +2,18 @@ import pymongo
 from pymongo import mongo_client
 import json
 
+#Link of JSON File.
+
 with open("Hawkeye.json") as Hawkeye:
   data=json.load(Hawkeye)
 
+#The section where the database connection is located.
+  
 myclient = pymongo.MongoClient(data["ConnectingURL"])
-
 mydb = myclient [data["DBName"]]
 user_table = mydb[data["CollectionName"]]
+
+#The section where transactions are made automatically.
 
 while True:
  print("====================================")
@@ -27,7 +32,6 @@ while True:
     x = user_table.insert_one(mydict)
     print(x)
 
- 
  elif option == '2':
    Delete = input("How many data do you want deleted? ")  
    for i in range(int(Delete)):
