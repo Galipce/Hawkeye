@@ -3,12 +3,12 @@ from pymongo import mongo_client
 import json
 
 with open("Hawkeye.json") as Hawkeye:
-  verilerimiz=json.load(Hawkeye)
+  data=json.load(Hawkeye)
 
-myclient = pymongo.MongoClient(verilerimiz["ConnectingURL"])
+myclient = pymongo.MongoClient(data["ConnectingURL"])
 
-mydb = myclient [verilerimiz["DBName"]]
-user_table = mydb[verilerimiz["CollectionName"]]
+mydb = myclient [data["DBName"]]
+user_table = mydb[data["CollectionName"]]
 
 while True:
  print("====================================")
