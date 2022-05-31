@@ -3,3 +3,7 @@
     "DBName": "Hawkeye",
     "CollectionName": "users"
 }
+
+//"ConnectingURL" :   Type the database connection URL here.
+//"DBName" :          Type the database name here.
+//"CollectionName" :  Type the collection name here.
