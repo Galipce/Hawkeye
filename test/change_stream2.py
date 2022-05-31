@@ -1,31 +1,32 @@
 from pymongo import MongoClient
 from elasticsearch import Elasticsearch, helpers
+import pymongo
 import configparser
 import os
 import json
 
-#MongoDB Connection
-client = MongoClient(os.environ["mongodb+srv://admin:admin@changestream.bddxv.mongodb.net/test?authSource=admin&replicaSet=atlas-wmd1av-shard-0&readPreference=primary&ssl=true"])
-db = client[os.environ["ChangeStreamTest"]]
-collection = db[os.environ["Coll1"]]
+with open("Hawkeye.json") as Hawkeye:
+  verilerimiz=json.load(Hawkeye)
+
+myclient = pymongo.MongoClient(verilerimiz["ConnectingURL"])
+
+mydb = myclient [verilerimiz["DBName"]]
+user_table = mydb[verilerimiz["CollectionName"]]
+
+ELASTIC_PASSWORD = "LqnkO92KerWSyBTewZfB8KSI"
+
+CLOUD_ID = "Hawkeye:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJGVhNDljNjZjNTMxMDQ0YzVhZjg2N2Q0ZDBhMGFjM2Y4JDk1MWNiYjYxODg4ODQ2NDY5MTUzZTQ5OTE3MDJkNDE3"
 
 
-
-elastic = Elasticsearch(
-    "https://localhost:9200",
-    basic_auth=("elastic", "Xwj*Jz9y72nC3zx8Ja=E")
+client = Elasticsearch(
+    cloud_id=CLOUD_ID,
+    basic_auth=("elastic", ELASTIC_PASSWORD)
 )
 
-
-#ElasticSearch config
-
-#es_host = os.environ["ELASTİCSEARCH_URL"]
-#es = Elasticsearch([es_host])
-#es_index = os.environ["ELASTICSEARCH_INDEX"]
-
+client.info()
 
 print("Starting to watch")
-with db.watch(max_await_time_ms=30000) as change_stream:
+with mydb.watch(max_await_time_ms=30000) as change_stream:
     while change_stream.alive:
         print("waiting for a change")
         change = change_stream.try_next()
@@ -46,8 +47,8 @@ def migrate():
         mongo_id = doc['_id']
         doc.pop('_id', None)
         action.append({
-            "_index": elastic,
+            "_index": client,
             "_id": mongo_id,
             "_source": json.dumps(doc)
         })
-    helpers.bulk(elastic.actions)
+    helpers.bulk(client.actions)
