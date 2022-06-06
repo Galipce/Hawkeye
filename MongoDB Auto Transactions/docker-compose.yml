@@ -12,8 +12,49 @@ services:
         soft: -1
         hard: -1
 
-  kibana:
+  kibana:    
     image: kibana:7.9.2
     ports:
       - '5601:5601'
+      
+  mongo1:
+    hostname: mongo1
+    container_name: localmongo1
+    image: mongo:4.0-xenial
+    expose:
+    - 27017
+    ports:
+      - 27017:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    
+  mongo2:
+    hostname: mongo2
+    container_name: localmongo2
+    image: mongo:4.0-xenial
+    expose:
+    - 27018
+    ports:
+    - 27018:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
 
+  mongo3:
+    hostname: mongo3
+    container_name: localmongo3
+    image: mongo:4.0-xenial
+    expose:
+    - 27019
+    ports:
+    - 27019:27017
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+
+mongoinit:
+    image: mongo
+    # this container will exit after executing the command
+    restart: "no"
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3  
